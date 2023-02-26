@@ -4,17 +4,20 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/gradeanalyzer.cpp 
+../src/model/Grade.cpp \
+../src/model/GradesManager.cpp 
 
 CPP_DEPS += \
-./src/gradeanalyzer.d 
+./src/model/Grade.d \
+./src/model/GradesManager.d 
 
 OBJS += \
-./src/gradeanalyzer.o 
+./src/model/Grade.o \
+./src/model/GradesManager.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-src/%.o: ../src/%.cpp src/subdir.mk
+src/model/%.o: ../src/model/%.cpp src/model/subdir.mk
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -I/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/controller -I/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/model -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
@@ -22,10 +25,10 @@ src/%.o: ../src/%.cpp src/subdir.mk
 	@echo ' '
 
 
-clean: clean-src
+clean: clean-src-2f-model
 
-clean-src:
-	-$(RM) ./src/gradeanalyzer.d ./src/gradeanalyzer.o
+clean-src-2f-model:
+	-$(RM) ./src/model/Grade.d ./src/model/Grade.o ./src/model/GradesManager.d ./src/model/GradesManager.o
 
-.PHONY: clean-src
+.PHONY: clean-src-2f-model
 

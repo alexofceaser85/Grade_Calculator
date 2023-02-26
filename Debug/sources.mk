@@ -23,5 +23,7 @@ OBJS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+src/controller \
 src \
+src/model \
 

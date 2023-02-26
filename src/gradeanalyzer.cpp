@@ -8,8 +8,14 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-	cout << "!!!Hello World From Grade Analyzer!!!" << endl; // prints !!!Hello World!!!
+#include "ConsoleInputController.h"
+using namespace controller;
+
+int main(int argc, char* argv[]) {
+
+	ConsoleInputController controller;
+	cout << controller.runInputLine(argc, argv);
+
 	return 0;
 }
 
