@@ -1,0 +1,9 @@
+DAFFY,Duck,67
+Porky,Pig,82
+Petunia,Pig,89
+bugs,Bunny,97
+Speedy,Gonzales,88
+Elmer,Fudd,81
+Yosemite,SAM,94
+TASmanian,Devil,88
+Lola,Bunny,87

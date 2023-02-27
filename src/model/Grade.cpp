@@ -35,9 +35,5 @@ namespace model {
 	int Grade::getGrade() const {
 		return grade;
 	}
-
-	bool Grade::operator< (const Grade &other) const {
-		return this->grade < other.getGrade();
-	}
 }
 

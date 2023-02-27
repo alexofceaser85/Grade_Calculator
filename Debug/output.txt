@@ -1,0 +1,11 @@
+Students earning an A:
+Bugs Bunny:97            Yosemite Sam:94          
+
+Students earning an B:
+Petunia Pig:89           Speedy Gonzales:88       
+Tasmanian Devil:88       Lola Bunny:87            Porky Pig:82             
+Elmer Fudd:81            
+
+Students earning an D:
+Daffy Duck:67            
+

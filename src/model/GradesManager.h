@@ -23,10 +23,14 @@ namespace model {
 
 			void add(Grade& grade);
 			vector<Grade> getGrades() const;
-			vector<Grade> getSortedGrades() const;
+			vector<Grade> getGradesSortedByLastName() const;
+			vector<Grade> getGradesSortedByGradeValue() const;
 			void loadFromFile(string filename);
 			void saveGradesData(string filename, string data);
 		};
+
+		bool compareByName (const Grade &a, const Grade &b);
+		bool compareByGrade (const Grade &a, const Grade &b);
 	}
 
 #endif /* SRC_MODEL_GRADESMANAGER_H_ */

@@ -42,7 +42,7 @@ namespace controller {
 				"\t --help " 				"\t\t\t" 		"Displays this usage statement\n"
 				"\t -c <number>" 			"\t\t\t" 		"Changes the number of output columns to the number specified\n"
 				"\t\t\t\t\t" 								"The default number of columns is 4.\n"
-				"\t -a <fist last grade>" 	"\t\t" 			"Add the specified students (case insensitive) to the output.\n"
+				"\t -a <first last grade>" 	"\t\t" 			"Add the specified students (case insensitive) to the output.\n"
 				"\t\t\t\t\t" 								"E.g., -a john doe 85 would add john doe with a grade of 85\n"
 				"\t -g" 					"\t\t\t\t" 		"Displays student grade with the output\n"
 				"\t -h" 					"\t\t\t\t" 		"Displays a histogram of the grades in addition to other output\n"
@@ -66,9 +66,9 @@ namespace controller {
 		vector<Grade> grades;
 
 		if (this->shouldSortStudentGrades) {
-			grades = this->manager.getSortedGrades();
+			grades = this->manager.getGradesSortedByGradeValue();;
 		} else {
-			grades = this->manager.getGrades();
+			grades = this->manager.getGradesSortedByLastName();
 		}
 
 		//TODO Extact into helper methods
@@ -102,18 +102,18 @@ namespace controller {
 				int currentColumn = 1;
 
 				for (string gradeOutput : outputForGrade) {
-					output << std::left << setw(this->columnWidth) << gradeOutput;
-
 					if (currentColumn == this->numberOfColumns) {
 						currentColumn = 1;
 						output << "\n";
 					} else {
 						currentColumn++;
 					}
+
+					output << std::left << setw(this->columnWidth) << gradeOutput;
 				}
 
 				currentColumn = 1;
-				output << endl;
+				output << endl << endl;
 			}
 		}
 
@@ -130,7 +130,7 @@ namespace controller {
 		const int maximumGradeValues[5] {100, 89, 79, 69, 59};
 		int gradeLettersSize = sizeof(gradeLetters) / sizeof(char);
 
-		vector<Grade> grades = this->manager.getGrades();
+		vector<Grade> grades = this->manager.getGradesSortedByGradeValue();
 
 		std::stringstream output;
 

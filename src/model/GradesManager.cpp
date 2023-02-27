@@ -21,17 +21,27 @@ namespace model {
 		// TODO Auto-generated destructor stub
 	}
 
+	bool compareByName(const Grade &a, const Grade &b) {
+		return a.getLastName() < b.getLastName();
+	}
+
+	bool compareByGrade (const Grade &a, const Grade &b) {
+		return a.getGrade() > b.getGrade();
+	}
+
 	void GradesManager::add(Grade& grade) {
 		grades.push_back(grade);
 	}
 
-	vector<Grade> GradesManager::getGrades() const {
-		return grades;
+	vector<Grade> GradesManager::getGradesSortedByLastName() const {
+		vector<Grade> sortableGrades = this->grades;
+		std::sort(sortableGrades.begin(), sortableGrades.end(), compareByName);
+		return sortableGrades;
 	}
 
-	vector<Grade> GradesManager::getSortedGrades() const {
+	vector<Grade> GradesManager::getGradesSortedByGradeValue() const {
 		vector<Grade> sortableGrades = this->grades;
-		std::sort(sortableGrades.begin(), sortableGrades.end());
+		std::sort(sortableGrades.begin(), sortableGrades.end(), compareByGrade);
 		return sortableGrades;
 	}
 
