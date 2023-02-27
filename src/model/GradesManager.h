@@ -9,7 +9,7 @@
 #define SRC_MODEL_GRADESMANAGER_H_
 
 #include "Grade.h"
-
+#include <algorithm>
 #include <vector>
 using namespace std;
 
@@ -23,6 +23,10 @@ namespace model {
 
 			void add(Grade& grade);
 			vector<Grade> getGrades() const;
+			vector<Grade> getSortedGrades() const;
+			void loadFromFile(string filename);
+			void saveGradesData(string filename, string data);
 		};
+	}
+
 #endif /* SRC_MODEL_GRADESMANAGER_H_ */
-}

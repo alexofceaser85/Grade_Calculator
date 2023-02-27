@@ -9,6 +9,7 @@
 #define CONTROLLER_CONSOLEINPUTCONTROLLER_H_
 
 #include <iostream>
+#include <sstream>
 #include "GradesManager.h"
 using namespace model;
 using namespace std;
@@ -16,9 +17,14 @@ using namespace std;
 namespace controller {
 	class ConsoleInputController {
 	private:
+		GradesManager manager;
 		int numberOfColumns;
 		int columnWidth;
-		GradesManager manager;
+		bool shouldDisplayGradeWithOutput;
+		bool shouldDisplayHistogramWithOuput;
+		bool shouldSortStudentGrades;
+		const std::stringstream displayGradesOutput();
+		const std::string displayGradesHistogram();
 	public:
 		ConsoleInputController();
 		virtual ~ConsoleInputController();

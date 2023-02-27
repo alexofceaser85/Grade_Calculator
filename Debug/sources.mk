@@ -25,5 +25,6 @@ OBJS :=
 SUBDIRS := \
 src/controller \
 src \
+src/io \
 src/model \
 

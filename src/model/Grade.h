@@ -26,6 +26,7 @@ namespace model {
 			const string& getFirstName() const;
 			const string& getLastName() const;
 			int getGrade() const;
+			bool operator< (const Grade &other) const;
 		};
 }
 

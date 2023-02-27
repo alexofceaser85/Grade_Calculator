@@ -1,0 +1,4 @@
+Daffy,Duck,76
+Porky,Pig,82
+Bug,Bunny,97
+Elmer,Fudd,88

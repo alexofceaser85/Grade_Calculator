@@ -6,8 +6,11 @@
  */
 
 #include "Grade.h"
-
+#include "FileIO.h"
 #include "GradesManager.h"
+
+using namespace std;
+using namespace io;
 
 namespace model {
 	GradesManager::GradesManager() {
@@ -24,5 +27,23 @@ namespace model {
 
 	vector<Grade> GradesManager::getGrades() const {
 		return grades;
+	}
+
+	vector<Grade> GradesManager::getSortedGrades() const {
+		vector<Grade> sortableGrades = this->grades;
+		std::sort(sortableGrades.begin(), sortableGrades.end());
+		return sortableGrades;
+	}
+
+	void GradesManager::loadFromFile(string filename) {
+		vector<Grade> loadedGrades = FileIO::loadGradesFromFile(filename);
+
+		for (Grade grade : loadedGrades) {
+			this->grades.push_back(grade);
+		}
+	}
+
+	void GradesManager::saveGradesData(string filename, string data) {
+		FileIO::saveFileOutput(filename, data);
 	}
 }

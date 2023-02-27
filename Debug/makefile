@@ -9,6 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include src/model/subdir.mk
+-include src/io/subdir.mk
 -include src/controller/subdir.mk
 -include src/subdir.mk
 ifneq ($(MAKECMDGOALS),clean)

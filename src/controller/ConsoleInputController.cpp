@@ -8,17 +8,22 @@
 #include "ConsoleInputController.h"
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 #include "GradesManager.h"
 
-using model;
+using namespace model;
 using namespace std;
 
 namespace controller {
 	ConsoleInputController::ConsoleInputController() {
 		// TODO Auto-generated constructor stub
 		this->manager = GradesManager();
+		//TODO Extract the magic numbers to a settings class
 		this->numberOfColumns = 4;
 		this->columnWidth = 20;
+		this->shouldDisplayGradeWithOutput = false;
+		this->shouldDisplayHistogramWithOuput = false;
+		this->shouldSortStudentGrades = false;
 	}
 
 	ConsoleInputController::~ConsoleInputController() {
@@ -26,6 +31,7 @@ namespace controller {
 	}
 
 	const std::string* displayUsageStatement() {
+		//TODO Try and clean this up
 		static const std::string usageStatement =
 				"usage: gradeanalyzerDeCesare infile [outfile] [options]\n"
 				"by Alex DeCesare\n"
@@ -49,9 +55,105 @@ namespace controller {
 		return &usageStatement;
 	}
 
-	std::string ConsoleInputController::runInputLine(int argc, char* argv[]) {
-		std::string output = "";
+	const std::stringstream ConsoleInputController::displayGradesOutput() {
+		std::stringstream output;
+		//TODO Move into a settings file
+		const char gradeLetters[5] {'A', 'B', 'C', 'D', 'F'};
+		const int minimumGradeValues[5] {90, 80, 70, 60, 0};
+		const int maximumGradeValues[5] {100, 89, 79, 69, 59};
+		int gradeLettersSize = sizeof(gradeLetters) / sizeof(char);
 
+		vector<Grade> grades;
+
+		if (this->shouldSortStudentGrades) {
+			grades = this->manager.getSortedGrades();
+		} else {
+			grades = this->manager.getGrades();
+		}
+
+		//TODO Extact into helper methods
+		for (int letterIndex = 0; letterIndex < gradeLettersSize; letterIndex++) {
+			vector<string> outputForGrade;
+
+			for (Grade grade : grades) {
+				if (grade.getGrade() >= minimumGradeValues[letterIndex] && grade.getGrade() <= maximumGradeValues[letterIndex]) {
+
+					string firstName = grade.getFirstName();
+					string lastName = grade.getLastName();
+
+					transform(firstName.begin(), firstName.end(), firstName.begin(), ::tolower);
+					transform(lastName.begin(), lastName.end(), lastName.begin(), ::tolower);
+
+					firstName[0] = toupper(firstName[0]);
+					lastName[0] = toupper(lastName[0]);
+
+					string outputForStudent = firstName + " " + lastName;
+
+					if (this->shouldDisplayGradeWithOutput) {
+						outputForStudent += ":" + std::to_string(grade.getGrade());
+					}
+
+					outputForGrade.push_back(outputForStudent);
+				}
+			}
+
+			if (!outputForGrade.empty()) {
+				output << "Students earning an " << gradeLetters[letterIndex] << ":" << endl;
+				int currentColumn = 1;
+
+				for (string gradeOutput : outputForGrade) {
+					output << std::left << setw(this->columnWidth) << gradeOutput;
+
+					if (currentColumn == this->numberOfColumns) {
+						currentColumn = 1;
+						output << "\n";
+					} else {
+						currentColumn++;
+					}
+				}
+
+				currentColumn = 1;
+				output << endl;
+			}
+		}
+
+		if (this->shouldDisplayHistogramWithOuput) {
+			output << this->displayGradesHistogram();
+		}
+
+		return output;
+	}
+
+	const std::string ConsoleInputController::displayGradesHistogram() {
+		const char gradeLetters[5] {'A', 'B', 'C', 'D', 'F'};
+		const int minimumGradeValues[5] {90, 80, 70, 60, 0};
+		const int maximumGradeValues[5] {100, 89, 79, 69, 59};
+		int gradeLettersSize = sizeof(gradeLetters) / sizeof(char);
+
+		vector<Grade> grades = this->manager.getGrades();
+
+		std::stringstream output;
+
+		output << endl << "Grade histogram:" << endl;
+
+		//TODO Extact into helper methods
+		for (int letterIndex = 0; letterIndex < gradeLettersSize; letterIndex++) {
+			string outputForGrade;
+			output << gradeLetters[letterIndex] << ": ";
+
+			for (Grade grade : grades) {
+				if (grade.getGrade() >= minimumGradeValues[letterIndex] && grade.getGrade() <= maximumGradeValues[letterIndex]) {
+					output << "*";
+				}
+			}
+
+			output << endl;
+		}
+
+		return output.str();
+	}
+
+	std::string ConsoleInputController::runInputLine(int argc, char* argv[]) {
 		try {
 			int index = 1;
 
@@ -62,15 +164,14 @@ namespace controller {
 				std::string arg = argv[index];
 
 				if (arg == "--help") {
-					output += "\n" + *displayUsageStatement();
-					return output;
+					std::string usageOutput = "\n" + *displayUsageStatement();
+					return usageOutput;
 				}
 				else if (arg == "-c") {
 					index++;
 					int numberOfOutputColumns = std::stoi(argv[index]);
 					index++;
-
-					output += "Setting number of output columns to: " + std::to_string(numberOfOutputColumns) + "\n";
+					this->numberOfColumns = numberOfOutputColumns;
 				} else if (arg == "-a") {
 					index++;
 					std::string firstName = argv[index];
@@ -86,46 +187,49 @@ namespace controller {
 					this->manager.add(gradeToAdd);
 				} else if (arg == "-g") {
 					index++;
-					output += "Displaying student grade with output\n";
-				} else if (arg == "h") {
+					this->shouldDisplayGradeWithOutput = true;
+				} else if (arg == "-h") {
 					index++;
-					output += "Displaying histogram of student grades\n";
+					this->shouldDisplayHistogramWithOuput = true;
 				} else if (arg == "-sg") {
 					index++;
-					output += "Displaying student grades sorted by order\n";
+					this->shouldDisplayGradeWithOutput = true;
+					this->shouldSortStudentGrades = true;
 				} else if (arg == "-w") {
 					index++;
 					int columnWidth = std::stoi(argv[index]);
-
 					index++;
-
-					output += "Setting column width to " + std::to_string(columnWidth) + "\n";
+					this->columnWidth = columnWidth;
 				} else if (infile.empty()) {
 					infile = argv[index];
 					index++;
 
-					output += "Setting infile to " + infile + "\n";
+					this->manager.loadFromFile(infile);
 				} else if (outfile.empty()) {
 					outfile = argv[index];
 					index++;
-
-					output += "Setting outfile to " + outfile + "\n";
 				}
 				else {
-					output += "\n" + *displayUsageStatement();
-					return output;
+					std::string usageOutput = "\n" + *displayUsageStatement();
+					return usageOutput;
 				}
 			}
 
-			return output;
+			std::string gradesOutput = displayGradesOutput().str();
+
+			if (!outfile.empty()) {
+				this->manager.saveGradesData(outfile, gradesOutput);
+			}
+
+			return gradesOutput;
 		}
 		catch(const std::invalid_argument& e) {
-			output += "\n" + *displayUsageStatement();
-			return output;
+			std::string usageOutput = "\n" + *displayUsageStatement();
+			return usageOutput;
 		}
 		catch(const std::logic_error& e) {
-			output += "\n" + *displayUsageStatement();
-			return output;
+			std::string usageOutput = "\n" + *displayUsageStatement();
+			return usageOutput;
 		}
 	}
 }
