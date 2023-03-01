@@ -19,44 +19,6 @@ using namespace model;
 using namespace std;
 
 namespace controller {
-	ConsoleInputController::ConsoleInputController() {
-		this->manager = GradesManager();
-		this->numberOfColumns = ApplicationSettings::DefaultNumberOfColumns;
-		this->columnWidth = ApplicationSettings::DefaultColumnWidth;
-		this->shouldDisplayGradeWithOutput = ApplicationSettings::DefaultDisplayGradeWithOutput;
-		this->shouldDisplayHistogramWithOuput = ApplicationSettings::DefaultDisplayHistogramWithOutput;
-		this->shouldSortStudentGrades = ApplicationSettings::DefaultSortStudentGradesByGrade;
-	}
-
-	ConsoleInputController::~ConsoleInputController() {
-
-	}
-
-	const std::string& displayUsageStatement() {
-		//TODO Try and clean this up
-		static const std::string usageStatement =
-				"usage: gradeanalyzerDeCesare infile [outfile] [options]\n"
-				"by Alex DeCesare\n"
-				"Performs a simple grade analysis of the students and grades contained infile\n"
-				"\t infile " 				"\t\t\t" 		"The input file to analyze the grades of\n"
-				"\t outfile " 				"\t\t\t" 		"The output file to write the output to\n"
-				"options:\n"
-				"\t --help " 				"\t\t\t" 		"Displays this usage statement\n"
-				"\t -c <number>" 			"\t\t\t" 		"Changes the number of output columns to the number specified\n"
-				"\t\t\t\t\t" 								"The default number of columns is 4.\n"
-				"\t -a <first last grade>" 	"\t\t" 			"Add the specified students (case insensitive) to the output.\n"
-				"\t\t\t\t\t" 								"E.g., -a john doe 85 would add john doe with a grade of 85\n"
-				"\t -g" 					"\t\t\t\t" 		"Displays student grade with the output\n"
-				"\t -h" 					"\t\t\t\t" 		"Displays a histogram of the grades in addition to other output\n"
-				"\t -sg" 					"\t\t\t\t" 		"Displays the output with the student grade displayed and sorted\n"
-				"\t\t\t\t\t"								"by the student's grade in descending order. This will automatically\n"
-				"\t\t\t\t\t"								"display the student's grade in the output even if -g is not specified\n"
-				"\t\t\t\t\t"								"on the command line.\n"
-				"\t -w <number>"			"\t\t\t" 		"Changes the column width for the output columns.\n"
-				"\t\t\t\t\t" 								"The default column width is 20\n";
-		return usageStatement;
-	}
-
 	const std::string ConsoleInputController::changeNameCasing(const std::string &nameToTransform) {
 		std::string transformedString = nameToTransform;
 		transform(transformedString.begin(), transformedString.end(), transformedString.begin(), ::tolower);
@@ -64,7 +26,7 @@ namespace controller {
 		return transformedString;
 	}
 
-	void ConsoleInputController::addGradeOutput(const Grade& grade, vector<std::string> &outputForGrade) {
+	void ConsoleInputController::addGradeOutput(const StudentGrade& grade, vector<std::string> &outputForGrade) {
 		std::string casedFirstName = this->changeNameCasing(grade.getFirstName());
 		std::string casedLastName = this->changeNameCasing(grade.getLastName());
 
@@ -77,15 +39,15 @@ namespace controller {
 		outputForGrade.push_back(outputForStudent);
 	}
 
-	bool ConsoleInputController::IsGradeWithinLetterValues(const Grade& grade, int letterIndex) {
+	bool ConsoleInputController::isGradeWithinLetterValues(const StudentGrade& grade, int letterIndex) {
 		return grade.getGrade() >= ApplicationSettings::MinimumGradeValues[letterIndex] && grade.getGrade() <= ApplicationSettings::MaximumGradeValues[letterIndex];
 	}
 
-	const vector<std::string> ConsoleInputController::getGradesOutput(vector<Grade> &grades, int letterIndex) {
+	const vector<std::string> ConsoleInputController::getGradesOutput(vector<StudentGrade> &grades, int letterIndex) {
 		vector<std::string> outputForGrade;
 
-		for (Grade grade : grades) {
-			if (this->IsGradeWithinLetterValues(grade, letterIndex)) {
+		for (StudentGrade grade : grades) {
+			if (this->isGradeWithinLetterValues(grade, letterIndex)) {
 				this->addGradeOutput(grade, outputForGrade);
 			}
 		}
@@ -96,17 +58,15 @@ namespace controller {
 	const std::string ConsoleInputController::displayGradeInformation(vector<std::string> &outputForGrade, int letterIndex) {
 		std::stringstream output;
 		output << "Students earning an " << ApplicationSettings::GradeLetters[letterIndex] << ":" << endl;
-		int currentColumn = 1;
+		unsigned int currentColumn = 1;
 
 		for (string gradeOutput : outputForGrade) {
 			output << std::left << setw(this->columnWidth) << gradeOutput;
 
-			if (currentColumn == this->numberOfColumns) {
-				currentColumn = 1;
-				output << "\n";
-			} else {
-				currentColumn++;
+			if (currentColumn % this->numberOfColumns == 0 && currentColumn < outputForGrade.size()) {
+				output << endl;
 			}
+			currentColumn++;
 		}
 
 		currentColumn = 1;
@@ -114,7 +74,7 @@ namespace controller {
 		return output.str();
 	}
 
-	const vector<Grade> ConsoleInputController::getGrades() {
+	const vector<StudentGrade> ConsoleInputController::getGrades() {
 		if (this->shouldSortStudentGrades) {
 			return this->manager.getGradesSortedByGradeValue();
 		} else {
@@ -125,7 +85,7 @@ namespace controller {
 	const std::stringstream ConsoleInputController::displayGradesOutput() {
 		std::stringstream output;
 
-		vector<Grade> grades = this->getGrades();
+		vector<StudentGrade> grades = this->getGrades();
 
 		for (int letterIndex = 0; letterIndex < ApplicationSettings::GradeLettersSize; letterIndex++) {
 			vector<std::string> outputForGrade = this->getGradesOutput(grades, letterIndex);
@@ -142,12 +102,12 @@ namespace controller {
 		return output;
 	}
 
-	const std::string ConsoleInputController::buildHistogramForGrade(vector<Grade> &grades, int letterIndex) {
+	const std::string ConsoleInputController::buildHistogramForGrade(vector<StudentGrade> &grades, int letterIndex) {
 		std::stringstream outputForGrade;
 		outputForGrade << ApplicationSettings::GradeLetters[letterIndex] << ": ";
 
-		for (Grade grade : grades) {
-			if (this->IsGradeWithinLetterValues(grade, letterIndex)) {
+		for (StudentGrade grade : grades) {
+			if (this->isGradeWithinLetterValues(grade, letterIndex)) {
 				outputForGrade << "*";
 			}
 		}
@@ -156,7 +116,7 @@ namespace controller {
 		return outputForGrade.str();
 	}
 
-	const std::string ConsoleInputController::buildHistogram(vector<Grade> &grades) {
+	const std::string ConsoleInputController::buildHistogram(vector<StudentGrade> &grades) {
 		std::stringstream output;
 		for (int letterIndex = 0; letterIndex < ApplicationSettings::GradeLettersSize; letterIndex++) {
 			output << this->buildHistogramForGrade(grades, letterIndex);
@@ -166,7 +126,7 @@ namespace controller {
 	}
 
 	const std::string ConsoleInputController::displayGradesHistogram() {
-		vector<Grade> grades = this->manager.getGradesSortedByGradeValue();
+		vector<StudentGrade> grades = this->manager.getGradesSortedByGradeValue();
 		std::stringstream output;
 
 		output << endl << "Grade histogram:" << endl;
@@ -175,6 +135,40 @@ namespace controller {
 		return output.str();
 	}
 
+	/**
+	 * The constructor for the console input controller
+	 *
+	 * Precondition: None
+	 * Postcondition: None
+	 */
+	ConsoleInputController::ConsoleInputController() {
+		this->manager = GradesManager();
+		this->numberOfColumns = ApplicationSettings::DefaultNumberOfColumns;
+		this->columnWidth = ApplicationSettings::DefaultColumnWidth;
+		this->shouldDisplayGradeWithOutput = ApplicationSettings::DefaultDisplayGradeWithOutput;
+		this->shouldDisplayHistogramWithOuput = ApplicationSettings::DefaultDisplayHistogramWithOutput;
+		this->shouldSortStudentGrades = ApplicationSettings::DefaultSortStudentGradesByGrade;
+	}
+
+	/**
+	 * The deconstructor for the console input controller
+	 *
+	 * Precondition: None
+	 * Postcondition: None
+	 */
+	ConsoleInputController::~ConsoleInputController() {
+
+	}
+
+	/**
+	 * Runs a line of input from the user
+	 *
+	 * Precondition: None
+	 * Postcondition: None
+	 *
+	 * Param: argc the number of arguments
+	 * Param: argv the arguments
+	 */
 	std::string ConsoleInputController::runInputLine(int argc, char* argv[]) {
 		try {
 			int index = 1;
@@ -186,7 +180,7 @@ namespace controller {
 				std::string arg = argv[index];
 
 				if (arg == "--help") {
-					return displayUsageStatement();
+					return ApplicationSettings::UsageStatement;
 				}
 				else if (arg == "-c") {
 					index++;
@@ -204,7 +198,7 @@ namespace controller {
 					int grade = std::stoi(argv[index]);
 					index++;
 
-					Grade gradeToAdd = Grade(firstName, lastName, grade);
+					StudentGrade gradeToAdd = StudentGrade(firstName, lastName, grade);
 					this->manager.add(gradeToAdd);
 				} else if (arg == "-g") {
 					index++;
@@ -232,7 +226,7 @@ namespace controller {
 					index++;
 				}
 				else {
-					return displayUsageStatement();
+					return ApplicationSettings::UsageStatement;
 				}
 			}
 
@@ -245,10 +239,10 @@ namespace controller {
 			return gradesOutput;
 		}
 		catch(const std::invalid_argument& e) {
-			return displayUsageStatement();
+			return ApplicationSettings::UsageStatement;
 		}
 		catch(const std::logic_error& e) {
-			return displayUsageStatement();
+			return ApplicationSettings::UsageStatement;
 		}
 	}
 }

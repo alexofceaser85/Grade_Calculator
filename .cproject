@@ -28,6 +28,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/io}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/controller}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/settings}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/errormessages}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1068765980" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -79,6 +80,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/io}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/controller}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/settings}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/errormessages}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1107223302" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -102,6 +104,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/io}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/controller}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/settings}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/errormessages}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.997307254" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>

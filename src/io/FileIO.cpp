@@ -6,29 +6,37 @@
  */
 
 #include "FileIO.h"
-#include "Grade.h"
+#include "ErrorMessages.h"
 #include <vector>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <sstream>
 #include<bits/stdc++.h>
+#include <StudentGrade.h>
 
 using namespace std;
 using namespace model;
+using namespace errormessages;
 
 namespace io {
 
 /**
  * Loads the grade information from the specified file
  *
- * Precondition: filename != null && filename.isEmpty() == false
+ * Precondition: filename.isEmpty() == false
  * Postcondition: None
+ *
+ * Param: filename The file name to load from
  *
  * Return: The grade information from the file
  */
-vector<Grade> FileIO::loadGradesFromFile(string& filename) {
-	std::vector<Grade> grades;
+vector<StudentGrade> FileIO::loadGradesFromFile(std::string& filename) {
+	if (filename.empty()) {
+		throw std::invalid_argument(ErrorMessages::FileNameToLoadCannotBeEmpty);
+	}
+
+	std::vector<StudentGrade> grades;
 	std::ifstream gradesFile(filename);
 	string line;
 
@@ -39,7 +47,7 @@ vector<Grade> FileIO::loadGradesFromFile(string& filename) {
 		std::string grade;
 
 		if (std::getline(ss, firstName, ',') && std::getline(ss, lastName, ',') && std::getline(ss, grade)) {
-			grades.push_back(Grade(firstName, lastName, std::stoi(grade)));
+			grades.push_back(StudentGrade(firstName, lastName, std::stoi(grade)));
 		}
 	}
 
@@ -49,13 +57,17 @@ vector<Grade> FileIO::loadGradesFromFile(string& filename) {
 /**
  * Saves the program output to the specified file
  *
- * Precondition: filename != null
- * 		&& filename.isEmpty() == false
- * 		&& fileContents != null
- * 		&& fileContents.isEmpty() == false
+ * Precondition: filename.isEmpty() == false
  * Postcondition: None
+ *
+ * Param: filename the name of the file to save to
+ * Param: data the data to save
  */
 void FileIO::saveFileOutput(string& filename, string& fileContents) {
+	if (filename.empty()) {
+		throw std::invalid_argument(ErrorMessages::FileNameToSaveCannotBeEmpty);
+	}
+
 	std::ofstream outputFile(filename);
 
 	if (outputFile.is_open()) {

@@ -15,6 +15,9 @@ using namespace model;
 using namespace std;
 
 namespace controller {
+	/**
+	 * The controller for the console input
+	 */
 	class ConsoleInputController {
 	private:
 		GradesManager manager;
@@ -23,21 +26,42 @@ namespace controller {
 		bool shouldDisplayGradeWithOutput;
 		bool shouldDisplayHistogramWithOuput;
 		bool shouldSortStudentGrades;
-		const vector<Grade> getGrades();
-		const std::stringstream displayGradesOutput();
-		const std::string displayGradesHistogram();
-		const std::string changeNameCasing(const std::string &nameToTransform);
-		void addGradeOutput(const Grade& grade, vector<std::string> &outputForGrade);
-		void addGrades(vector<Grade> &grades);
-		bool IsGradeWithinLetterValues(const Grade &grade, int letterIndex);
-		const vector<std::string> getGradesOutput(vector<Grade> &grades, int letterIndex);
-		const std::string displayGradeInformation(vector<std::string> &outputForGrade, int letterIndex);
-		const std::string buildHistogramForGrade(vector<Grade> &grades, int letterIndex);
-		const std::string buildHistogram(vector<Grade> &grades);
-	public:
-		ConsoleInputController();
-		virtual ~ConsoleInputController();
 
+		const std::string changeNameCasing(const std::string &nameToTransform);
+		void addGradeOutput(const StudentGrade& grade, vector<std::string> &outputForGrade);
+		bool isGradeWithinLetterValues(const StudentGrade &grade, int letterIndex);
+		const vector<std::string> getGradesOutput(vector<StudentGrade> &grades, int letterIndex);
+		const std::string displayGradeInformation(vector<std::string> &outputForGrade, int letterIndex);
+		const vector<StudentGrade> getGrades();
+		const std::stringstream displayGradesOutput();
+
+		const std::string buildHistogramForGrade(vector<StudentGrade> &grades, int letterIndex);
+		const std::string buildHistogram(vector<StudentGrade> &grades);
+		const std::string displayGradesHistogram();
+	public:
+		/**
+		 * The constructor for the console input controller
+		 *
+		 * Precondition: None
+		 * Postcondition: None
+		 */
+		ConsoleInputController();
+		/**
+		 * The destructor for the console input controller
+		 *
+		 * Precondition: None
+		 * Postcondition: None
+		 */
+		virtual ~ConsoleInputController();
+		/**
+		 * Runs a line of input from the user
+		 *
+		 * Precondition: None
+		 * Postcondition: None
+		 *
+		 * Param: argc the number of arguments
+		 * Param: argv the arguments
+		 */
 		std::string runInputLine(int argc, char* argv[]);
 	};
 }
