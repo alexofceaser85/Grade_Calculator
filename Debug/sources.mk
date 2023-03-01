@@ -24,7 +24,9 @@ OBJS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 src/controller \
+src/errormessages \
 src \
 src/io \
 src/model \
+src/settings \
 

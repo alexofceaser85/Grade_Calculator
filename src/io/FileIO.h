@@ -18,8 +18,8 @@ using namespace model;
 namespace io {
 	class FileIO {
 		public:
-			static vector<Grade> loadGradesFromFile(string filename);
-			static void saveFileOutput(string filename, string fileContents);
+			static vector<Grade> loadGradesFromFile(string& filename);
+			static void saveFileOutput(string& filename, string& fileContents);
 		};
 	}
 #endif /* SRC_IO_FILEIO_H_ */

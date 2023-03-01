@@ -6,15 +6,16 @@
  */
 
 #include "Grade.h"
+using namespace std;
 
 namespace model {
 	Grade::Grade() {
-		this->firstName = string();
-		this->lastName = string();
+		this->firstName = std::string();
+		this->lastName = std::string();
 		this->grade = 0;
 	}
 
-	Grade::Grade(const string& firstName, const string& lastName, int grade) {
+	Grade::Grade(const std::string& firstName, const std::string& lastName, int grade) {
 		this->firstName = firstName;
 		this->lastName = lastName;
 		this->grade = grade;
@@ -24,11 +25,11 @@ namespace model {
 		// TODO Auto-generated destructor stub
 	}
 
-	const string& Grade::getFirstName() const {
+	const std::string& Grade::getFirstName() const {
 		return firstName;
 	}
 
-	const string& Grade::getLastName() const {
+	const std::string& Grade::getLastName() const {
 		return lastName;
 	}
 

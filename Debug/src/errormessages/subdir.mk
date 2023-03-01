@@ -4,17 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/gradeanalyzer.cpp 
+../src/errormessages/ErrorMessages.cpp 
 
 CPP_DEPS += \
-./src/gradeanalyzer.d 
+./src/errormessages/ErrorMessages.d 
 
 OBJS += \
-./src/gradeanalyzer.o 
+./src/errormessages/ErrorMessages.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-src/%.o: ../src/%.cpp src/subdir.mk
+src/errormessages/%.o: ../src/errormessages/%.cpp src/errormessages/subdir.mk
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -I"/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/model" -I"/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/io" -I"/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/controller" -I"/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/settings" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
@@ -22,10 +22,10 @@ src/%.o: ../src/%.cpp src/subdir.mk
 	@echo ' '
 
 
-clean: clean-src
+clean: clean-src-2f-errormessages
 
-clean-src:
-	-$(RM) ./src/gradeanalyzer.d ./src/gradeanalyzer.o
+clean-src-2f-errormessages:
+	-$(RM) ./src/errormessages/ErrorMessages.d ./src/errormessages/ErrorMessages.o
 
-.PHONY: clean-src
+.PHONY: clean-src-2f-errormessages
 

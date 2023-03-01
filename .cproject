@@ -14,7 +14,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.exe.debug.943353502" name="Debug" optionalBuildProperties="org.eclipse.cdt.docker.launcher.containerbuild.property.volumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.selectedvolumes=" parent="cdt.managedbuild.config.gnu.exe.debug">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.exe.debug.943353502" name="Debug" optionalBuildProperties="org.eclipse.cdt.docker.launcher.containerbuild.property.selectedvolumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.volumes=" parent="cdt.managedbuild.config.gnu.exe.debug">
 					<folderInfo id="cdt.managedbuild.config.gnu.exe.debug.943353502." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.debug.1118099728" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.debug">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.debug.1442117260" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.debug"/>
@@ -24,9 +24,10 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.1657605314" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option defaultValue="gnu.cpp.compiler.debugging.level.max" id="gnu.cpp.compiler.exe.debug.option.debugging.level.84315019" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" useByScannerDiscovery="false" valueType="enumerated"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.include.paths.1941159876" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/controller"/>
-									<listOptionValue builtIn="false" value="/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/model"/>
-									<listOptionValue builtIn="false" value="/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/io"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/model}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/io}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/controller}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/settings}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1068765980" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -53,8 +54,8 @@
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.441176863" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.1791531340"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.2141594679" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1504405256">
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.include.paths.434615" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/model"/>
-									<listOptionValue builtIn="false" value="/home/adecesa1/eclipse-workspace/gradeanalyzerDeCesare/src/controller"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/model}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/settings}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1417712027" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -65,6 +66,52 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.2068846519" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1732948057"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.970057676" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug.607318499">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.180618330" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="cdt.managedbuild.config.gnu.exe.debug.943353502.1343395504" name="/" resourcePath="src/io">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.debug.1785922017" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.debug" unusedChildren="">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.debug" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.debug"/>
+							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1453182241" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.1791531340"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1544393517" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1504405256">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.include.paths.1940844691" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/model}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/io}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/controller}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/settings}&quot;"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1107223302" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1686166965" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1564087977">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.203316724" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.805053184" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug.569480202"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1642716915" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1732948057"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.242042014" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug.607318499">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1352556389" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="cdt.managedbuild.config.gnu.exe.debug.943353502.1458404097" name="/" resourcePath="src/model">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.debug.1491349635" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.debug" unusedChildren="">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.debug" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.debug"/>
+							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1214749535" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.1791531340"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.618302963" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1504405256">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.include.paths.1051086153" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/model}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/io}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/controller}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/settings}&quot;"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.997307254" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.341023170" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1564087977">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.184437457" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.860424974" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug.569480202"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1535588820" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1732948057"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.932301336" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug.607318499">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1221888739" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
@@ -94,6 +141,12 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.649271838" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release">
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.1754128842" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option defaultValue="gnu.cpp.compiler.debugging.level.none" id="gnu.cpp.compiler.exe.release.option.debugging.level.1555955683" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.include.paths.218372225" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/model}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/io}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/controller}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/settings}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.10461740" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.647157934" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release">
@@ -110,6 +163,29 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.release.1121588412" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.release">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.238108652" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="cdt.managedbuild.config.gnu.exe.release.1778192401.1317190466" name="/" resourcePath="src/io">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.release.1807023897" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.release" unusedChildren="">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.release" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.release"/>
+							<tool id="cdt.managedbuild.tool.gnu.archiver.base.503940270" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.1759937006"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1674755049" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.649271838">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.include.paths.1073547212" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/model}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/io}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/controller}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/gradeanalyzerDeCesare/src/settings}&quot;"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.455600992" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.2145272194" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release.647157934">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.472341683" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.1301338082" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release.1559446838"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.2090984170" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.1765190309"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.release.474467379" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.release.1121588412">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.68802913" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>

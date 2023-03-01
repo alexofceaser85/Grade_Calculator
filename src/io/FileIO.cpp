@@ -18,7 +18,16 @@ using namespace std;
 using namespace model;
 
 namespace io {
-vector<Grade> FileIO::loadGradesFromFile(string filename) {
+
+/**
+ * Loads the grade information from the specified file
+ *
+ * Precondition: filename != null && filename.isEmpty() == false
+ * Postcondition: None
+ *
+ * Return: The grade information from the file
+ */
+vector<Grade> FileIO::loadGradesFromFile(string& filename) {
 	std::vector<Grade> grades;
 	std::ifstream gradesFile(filename);
 	string line;
@@ -37,7 +46,16 @@ vector<Grade> FileIO::loadGradesFromFile(string filename) {
 	return grades;
 }
 
-void FileIO::saveFileOutput(string filename, string fileContents) {
+/**
+ * Saves the program output to the specified file
+ *
+ * Precondition: filename != null
+ * 		&& filename.isEmpty() == false
+ * 		&& fileContents != null
+ * 		&& fileContents.isEmpty() == false
+ * Postcondition: None
+ */
+void FileIO::saveFileOutput(string& filename, string& fileContents) {
 	std::ofstream outputFile(filename);
 
 	if (outputFile.is_open()) {

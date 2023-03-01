@@ -45,7 +45,7 @@ namespace model {
 		return sortableGrades;
 	}
 
-	void GradesManager::loadFromFile(string filename) {
+	void GradesManager::loadFromFile(std::string filename) {
 		vector<Grade> loadedGrades = FileIO::loadGradesFromFile(filename);
 
 		for (Grade grade : loadedGrades) {
@@ -53,7 +53,7 @@ namespace model {
 		}
 	}
 
-	void GradesManager::saveGradesData(string filename, string data) {
+	void GradesManager::saveGradesData(std::string filename, std::string data) {
 		FileIO::saveFileOutput(filename, data);
 	}
 }
