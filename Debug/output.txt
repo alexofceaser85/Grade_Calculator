@@ -11,10 +11,12 @@ Foghorn Leghorn:77
 Students earning an D:
 Daffy Duck:67       
 
+Students earning an F:
+G G:5               
 
 Grade histogram:
 A: **
 B: ******
 C: *
 D: *
-F: 
+F: *

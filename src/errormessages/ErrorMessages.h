@@ -1,8 +1,5 @@
 /*
- * ErrorMessages.h
- *
- *  Created on: Feb 28, 2023
- *      Author: adecesa1
+ * The error messages for the application
  */
 
 #ifndef SRC_ERRORMESSAGES_ERRORMESSAGES_H_

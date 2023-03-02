@@ -1,8 +1,5 @@
 /*
- * ApplicationSettings.h
- *
- *  Created on: Feb 28, 2023
- *      Author: adecesa1
+ * The settings for the application
  */
 
 #ifndef SRC_SETTINGS_APPLICATIONSETTINGS_H_
@@ -14,7 +11,7 @@ using namespace std;
 
 namespace settings {
 /**
- * The application settings
+ * The class holding the settings for the application
  */
 class ApplicationSettings {
 public:
@@ -68,7 +65,7 @@ public:
 	/**
 	 * The usage statement
 	 */
-	static const std::string& UsageStatement;
+	static const std::string &UsageStatement;
 };
 }
 #endif /* SRC_SETTINGS_APPLICATIONSETTINGS_H_ */
